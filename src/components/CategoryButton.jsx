@@ -1,8 +1,6 @@
 import React from "react";
-import RewardForm from "./MyForm";
 
-//function to display the reward categories
-
+//function to display reward categories
 function CategoryButton(props) {
   // const image = props.image;
   // const categoryName = props.categoryName;

@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
 function MyForm(props) {
-  //defining what a new achievement is - it's an object
   const newAchievement = {
     text: "",
     date: new Date().toDateString(),
-    category: props.category  
+    category: props.category
   };
 
   console.log("Const newAchievement: ", newAchievement)
   
-  //useState returns a stateful value, and a function to update it.
   const [formText, setText] = useState("");
 
   const handleSubmit = (event) => {
