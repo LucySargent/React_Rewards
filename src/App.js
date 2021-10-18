@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import CategoryButton from "./components/CategoryButton";
 import MyForm from "./components/MyForm";
-import DisplayAchievement from "./components/DisplayAchievement";
+import helping from "./helping.jpg" 
+
 
 import "./App.css";
 
 const categories = [
   {
     categoryName: "Being Responsible",
-    image: "",
+    image: ""
   },
   {
     categoryName: "Being Kind",
@@ -30,11 +31,11 @@ function App() {
   const [points, setPoints] = useState(0);
   const [activeCategory, setActiveCategory] = useState("");
   const [achievements, updateAchievements] = useState([
-    {
-      category: "Being Helpful",
-      date: new Date().toDateString(),
-      text: "Fed the fish",
-    },
+    // {
+    //   category: "Being Helpful",
+    //   date: new Date().toDateString(),
+    //   text: "Fed the fish",
+    // },
   ]);
 
   //complex function
@@ -48,12 +49,13 @@ function App() {
       <h2>Select a category</h2>
 {/* DISPLAY CATEGORIES */}
       <div className="Categories">
+        <img src={helping} alt="helping" height="100" width="100"/>
         {categories.map((category, index) => {
           return (
             <CategoryButton
-              categoryName={category.categoryName}
-              image={category.image}
-              displayForm={() => {
+            categoryName={category.categoryName}
+            image={category.image}
+            displayForm={() => {
                 setActiveCategory(category.categoryName);
                 setIsFormShowing(true);
               }}
