@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CategoryButton from "./components/CategoryButton";
 import DisplayAchievement from "./components/DisplayAchievement";
 import MyForm from "./components/MyForm";
-import RewardButton from "./components/RewardButton";
+import ShowRewardButtons from "./components/ShowRewardButtons";
 
 import helping from "./helping.jpg";
 import responsible from "./responsible.jpg";
@@ -30,24 +30,10 @@ const categories = [
   },
 ];
 
-// const rewards25 = [
-//   {
-//     reward25Item: "Smoothie",
-//   },
-//   {
-//     reward25Item: "Ice-block",
-//   },
-//   {
-//     reward25Item: "Play a game",
-//   },
-// ];
-
-// const GetRandomReward25 = () =>
-//   rewards25[Math.floor(Math.random() * rewards25.length)];
 
 function App() {
-  const [reward25, setReward25] = useState("");
   const [isFormShowing, setIsFormShowing] = useState(false);
+  const [reward25, setReward25] = useState("");
   const [points, setPoints] = useState(0);
   const [activeCategory, setActiveCategory] = useState("");
   const [achievements, updateAchievements] = useState([
@@ -55,22 +41,25 @@ function App() {
       category: "I'm helpful",
       date: new Date().toDateString(),
       text: "I fed the fish",
-    },
+    }
   ]);
+  
+  const rewards25 = [ "Smoothie", "Ice-block", "Play a game", "Choose dinner"];
+  
+  const generateReward = () => {
+    const RandomReward = () => rewards25[Math.floor(Math.random() * rewards25.length)];
+    setReward25(RandomReward)
+  }
 
-  //complex function
-  //a is an achievement object
   //shorthand arrow function. Right of arrow is the function return.
   const addAchievement = (newAchievementStuff) =>
     updateAchievements([...achievements, newAchievementStuff]);
 
-  
   return (
     <div className="App">
       <h1>My Rewards Chart!</h1>
       <h2>Select a category</h2>
       <div className="Categories">
-        {/* DISPLAY CATEGORIES */}
         {categories.map((category, index) => {
           return (
             <CategoryButton 
@@ -79,12 +68,10 @@ function App() {
               displayForm={() => {
                 setActiveCategory(category.categoryName);
                 setIsFormShowing(true);
-              }}
-            />
+              }}/>
           );
         })}
       </div>
-      {/* DISPLAY FORM */}
       <div>
         {isFormShowing && (
           <MyForm 
@@ -107,11 +94,12 @@ function App() {
       <div>
         <h2>Collect a reward!</h2>
         <h4>Collect a reward when you have enough points or carry on earning for a bigger reward!</h4>
-        <RewardButton/>
-        
+        <ShowRewardButtons />
+        <button onClick={() => generateReward()}>25 POINTS</button>
+        <h3>Your reward is: {reward25}</h3> 
       </div>
     </div>
-  );
-}
+  )
+};
 
 export default App;
