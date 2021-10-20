@@ -1,6 +1,21 @@
+.App {
+  background-color: rgb(181, 199, 218);
+  /* width: 90%; */
+  margin: 20px;
+}
+
 .Categories {
-  width: 75%;
+  width: 50%;
   display: flex; 
   flex-direction: row;
   justify-content: space-around;
+  margin-left: 10%;
 }
+
+.Achievements  {
+  width: 50%;
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between;
+}
+

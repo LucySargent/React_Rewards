@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 function MyForm(props) {
-  const newAchievement = {
+  const achievementTemplate = {
     text: "",
     date: new Date().toDateString(),
     category: props.category
   };
 
-  console.log("Const newAchievement: ", newAchievement)
+  console.log("Const achievementTemplate: ", achievementTemplate)
   
   const [formText, setText] = useState("");
 
@@ -16,7 +16,14 @@ function MyForm(props) {
     if (!formText) {
       return;
     }
-    props.addAchievement({ ...newAchievement, text: formText });
+
+    const newAchievement = {
+      ...achievementTemplate, 
+      text: formText
+    }
+
+    props.addAchievement(newAchievement);
+    props.setPoints(5)
     setText("");
   };
 

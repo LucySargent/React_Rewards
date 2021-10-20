@@ -1,17 +1,26 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 
-// const DisplayAchievement = (props) => {
-//   const {achievement} = props;
-//     return (
-//         <div>
-//           <p>
-//             {achievement.category}
-//             {achievement.date}
-//             {achievement.text}
-//             <button>Edit</button>
-//             <button>Remove</button>
-//           </p>
-//         </div>
-//     )}
+const DisplayAchievement = (props) => {
+  const { achievement } = props;
+  return (
+    <div className="Achievements">
+      <div>
+        <p>{achievement.category}</p>
+      </div>
+      <div>
+        <p>{achievement.date}</p>
+      </div>
+      <div>
+        <p>{achievement.text}</p>
+      </div>
+      <div>
+      <p><button>Edit</button></p>
+      </div>
+      <div>
+        <p><button>Remove</button></p>
+      </div>
+    </div>
+  );
+};
 
-// export default DisplayAchievement;
+export default DisplayAchievement;

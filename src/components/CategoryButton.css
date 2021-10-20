@@ -1,0 +1,14 @@
+.Category-Button {
+    border-radius: 50%;
+    border-style: solid;
+    background-color:  white;
+    width: 190px;
+    height: 190px;
+    margin: 10px;
+}
+
+.Category-image {
+  border-radius: 50%;
+  height: 150px; 
+  width: 150px;
+}

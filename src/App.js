@@ -1,91 +1,82 @@
 import React, { useState } from "react";
 import CategoryButton from "./components/CategoryButton";
 import MyForm from "./components/MyForm";
-import helping from "./helping.jpg" 
-
-
+import helping from "./helping.jpg";
+import DisplayAchievement from "./components/DisplayAchievement";
 import "./App.css";
 
 const categories = [
   {
-    categoryName: "Being Responsible",
-    image: ""
+    categoryName: "I'm responsible",
+    image: helping,
   },
   {
-    categoryName: "Being Kind",
-    image: "",
+    categoryName: "I'm kind",
+    image: helping,
   },
   {
-    categoryName: "Being Organised",
-    image: "",
+    categoryName: "I'm organised",
+    image: helping,
   },
   {
-    categoryName: "Being Helpful",
-    image: "",
+    categoryName: "I'm helpful",
+    image: helping,
   },
 ];
 
 function App() {
-  //array destructuring
   const [isFormShowing, setIsFormShowing] = useState(false);
   const [points, setPoints] = useState(0);
   const [activeCategory, setActiveCategory] = useState("");
   const [achievements, updateAchievements] = useState([
-    // {
-    //   category: "Being Helpful",
-    //   date: new Date().toDateString(),
-    //   text: "Fed the fish",
-    // },
+    {
+      category: "I'm helpful",
+      date: new Date().toDateString(),
+      text: "I fed the fish",
+    },
   ]);
 
   //complex function
   //a is an achievement object
   //shorthand arrow function. Right of arrow is the function return.
-  const addAchievement = (a) => updateAchievements([...achievements, a]);
+  const addAchievement = (newAchievementStuff) =>
+    updateAchievements([...achievements, newAchievementStuff]);
 
   return (
-    <div>
+    <div className="App">
       <h1>My Rewards Chart!</h1>
       <h2>Select a category</h2>
-{/* DISPLAY CATEGORIES */}
       <div className="Categories">
-        <img src={helping} alt="helping" height="100" width="100"/>
+        {/* DISPLAY CATEGORIES */}
         {categories.map((category, index) => {
           return (
-            <CategoryButton
-            categoryName={category.categoryName}
-            image={category.image}
-            displayForm={() => {
+            <CategoryButton 
+              categoryName={category.categoryName}
+              image={category.image}
+              displayForm={() => {
                 setActiveCategory(category.categoryName);
                 setIsFormShowing(true);
               }}
-              setPoints={() => setPoints(points + 5)}
             />
           );
         })}
       </div>
-{/* DISPLAY FORM */}
+      {/* DISPLAY FORM */}
       <div>
         {isFormShowing && (
-          <MyForm addAchievement={addAchievement} category={activeCategory} />
+          <MyForm 
+            addAchievement={addAchievement} 
+            category={activeCategory} 
+            setPoints={(value) => setPoints(points + value)}
+          />
         )}
       </div>
-{/* DISPLAY ACHIEVEMENTS */}
+    {/* DISPLAY ACHIEVEMENTS */}
       <h2>My Achievements</h2>
       {achievements.map((achievement) => {
-        return (
-          <div>
-            <p>
-              {achievement.category}
-              {achievement.date}
-              {achievement.text}
-              <button>Edit</button>
-              <button>Remove</button>
-            </p>
-          </div>
-        );
+        return <DisplayAchievement achievement={achievement} />;
       })}
-{/* DISPLAY POINTS */}
+      {/* DISPLAY POINTS */}
       <div>
         <h2>My Points {points}</h2>
       </div>
