@@ -1,5 +1,5 @@
 .App {
-  background-color: rgb(181, 199, 218);
+  /* background-color: ; */
   /* width: 90%; */
   margin: 20px;
 }
@@ -9,7 +9,7 @@
   display: flex; 
   flex-direction: row;
   justify-content: space-around;
-  margin-left: 10%;
+  margin-left: 3%;
 }
 
 .Achievements  {

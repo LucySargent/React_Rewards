@@ -1,0 +1,16 @@
+.Reward-Button-Section {
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.Reward-Button {
+    background-color:rgb(15, 15, 53);
+    border:rgb(15, 15, 53);
+    border-style: solid;
+    height: 75px;
+    width: 75px;
+    color: white;
+    border-radius: 50%;
+}

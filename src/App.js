@@ -1,22 +1,28 @@
 import React, { useState } from "react";
 import CategoryButton from "./components/CategoryButton";
-import MyForm from "./components/MyForm";
-import helping from "./helping.jpg";
 import DisplayAchievement from "./components/DisplayAchievement";
+import MyForm from "./components/MyForm";
+import RewardButton from "./components/RewardButton";
+
+import helping from "./helping.jpg";
+import responsible from "./responsible.jpg";
+import organised from "./organised.jpg";
+import kind from "./kind.jpg";
+
 import "./App.css";
 
 const categories = [
   {
     categoryName: "I'm responsible",
-    image: helping,
+    image: responsible,
   },
   {
     categoryName: "I'm kind",
-    image: helping,
+    image: kind,
   },
   {
     categoryName: "I'm organised",
-    image: helping,
+    image: organised,
   },
   {
     categoryName: "I'm helpful",
@@ -24,7 +30,23 @@ const categories = [
   },
 ];
 
+// const rewards25 = [
+//   {
+//     reward25Item: "Smoothie",
+//   },
+//   {
+//     reward25Item: "Ice-block",
+//   },
+//   {
+//     reward25Item: "Play a game",
+//   },
+// ];
+
+// const GetRandomReward25 = () =>
+//   rewards25[Math.floor(Math.random() * rewards25.length)];
+
 function App() {
+  const [reward25, setReward25] = useState("");
   const [isFormShowing, setIsFormShowing] = useState(false);
   const [points, setPoints] = useState(0);
   const [activeCategory, setActiveCategory] = useState("");
@@ -42,6 +64,7 @@ function App() {
   const addAchievement = (newAchievementStuff) =>
     updateAchievements([...achievements, newAchievementStuff]);
 
+  
   return (
     <div className="App">
       <h1>My Rewards Chart!</h1>
@@ -79,6 +102,13 @@ function App() {
       {/* DISPLAY POINTS */}
       <div>
         <h2>My Points {points}</h2>
+      </div>
+      {/* DISPLAY REWARD BUTTONS */}
+      <div>
+        <h2>Collect a reward!</h2>
+        <h4>Collect a reward when you have enough points or carry on earning for a bigger reward!</h4>
+        <RewardButton/>
+        
       </div>
     </div>
   );
