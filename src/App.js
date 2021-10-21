@@ -33,8 +33,9 @@ const categories = [
 
 function App() {
   const [isFormShowing, setIsFormShowing] = useState(false);
-  const [reward25, setReward25] = useState("");
-  const [points, setPoints] = useState(0);
+  const [error, showError] = useState("");
+  const [reward, setReward] = useState("");
+  const [points, setPoints] = useState(95);
   const [activeCategory, setActiveCategory] = useState("");
   const [achievements, updateAchievements] = useState([
     {
@@ -44,20 +45,29 @@ function App() {
     }
   ]);
   
-  const rewards25 = [ "Smoothie", "Ice-block", "Play a game", "Choose dinner"];
-  
-  const generateReward = () => {
-    const RandomReward = () => rewards25[Math.floor(Math.random() * rewards25.length)];
-    setReward25(RandomReward)
+ 
+  const generateReward = (arrayOfAwards, awardValue) => {
+    const RandomReward = () => arrayOfAwards[Math.floor(Math.random() * arrayOfAwards.length)];
+    if (points >= awardValue){
+    setReward(RandomReward)
+    setPoints(points - awardValue)
+    } else
+    alert("Sorry, not enough points yet")
   }
 
   //shorthand arrow function. Right of arrow is the function return.
   const addAchievement = (newAchievementStuff) =>
     updateAchievements([...achievements, newAchievementStuff]);
 
+  
+    
+  // function addToLocalStorage(todoItems) {
+  //     // convert array to string then store it.
+  //   localStorage.setItem('achievements', JSON.stringify(achievements));
+
   return (
     <div className="App">
-      <h1>My Rewards Chart!</h1>
+      <h1>Millie's Rewards Chart!</h1>
       <h2>Select a category</h2>
       <div className="Categories">
         {categories.map((category, index) => {
@@ -94,9 +104,8 @@ function App() {
       <div>
         <h2>Collect a reward!</h2>
         <h4>Collect a reward when you have enough points or carry on earning for a bigger reward!</h4>
-        <ShowRewardButtons />
-        <button onClick={() => generateReward()}>25 POINTS</button>
-        <h3>Your reward is: {reward25}</h3> 
+        <ShowRewardButtons generateReward={generateReward}/>
+        <h3>Your reward is: {reward}</h3> 
       </div>
     </div>
   )
